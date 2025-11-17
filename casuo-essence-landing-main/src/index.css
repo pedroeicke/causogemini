@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Roxo vinho da Clínica Casuo */
+    --primary: 295 31% 34%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Verde médico da Clínica Casuo */
+    --secondary: 152 100% 33%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 152 100% 33%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 152 100% 33%;
+
+    --radius: 0.75rem;
+
+    /* Cores da Clínica Casuo */
+    --clinic-purple: 295 31% 34%;
+    --clinic-green: 152 100% 33%;
+    --clinic-white: 0 0% 100%;
+    --clinic-light: 0 0% 97%;
+    --clinic-dark: 0 0% 10%;
+    
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, hsl(295 31% 34%) 0%, hsl(295 31% 44%) 100%);
+    --gradient-green: linear-gradient(135deg, hsl(152 100% 33%) 0%, hsl(152 100% 43%) 100%);
+    
+    /* Sombras elegantes */
+    --shadow-soft: 0 2px 20px -2px hsl(295 31% 34% / 0.08);
+    --shadow-medium: 0 4px 30px -4px hsl(295 31% 34% / 0.12);
+    --shadow-strong: 0 8px 40px -8px hsl(295 31% 34% / 0.2);
+    
+    /* Transições suaves */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "liga" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-light tracking-tight;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .clinic-gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .parallax-slow {
+    transform: translateY(var(--parallax-offset, 0));
+    transition: transform 0.1s ease-out;
+  }
+  
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .glow-green {
+    box-shadow: 0 0 30px hsl(152 100% 33% / 0.3);
+  }
+  
+  /* Efeitos de cruz + verde animados */
+  .medical-cross-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .medical-cross-bg::before,
+  .medical-cross-bg::after {
+    content: '+';
+    position: absolute;
+    font-size: 120px;
+    font-weight: 300;
+    color: hsl(152 100% 33% / 0.08);
+    z-index: 0;
+    animation: float-cross 6s ease-in-out infinite;
+  }
+  
+  .medical-cross-bg::before {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+  }
+  
+  .medical-cross-bg::after {
+    bottom: 15%;
+    right: 8%;
+    animation-delay: 3s;
+  }
+  
+  @keyframes float-cross {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.08;
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+      opacity: 0.12;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
